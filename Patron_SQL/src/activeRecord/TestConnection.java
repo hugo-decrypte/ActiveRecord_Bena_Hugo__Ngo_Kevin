@@ -7,7 +7,7 @@ import java.sql.Connection;
 public class TestConnection {
 
     @Test
-    public void testSingleton() {
+    public void testConnection() {
         Connection conn1 = DBConnection.getConnection();
         Connection conn2 = DBConnection.getConnection();
 
@@ -35,8 +35,8 @@ public class TestConnection {
         Connection conn2 = DBConnection.getConnection();
 
         // Vérifie que les connexions ne sont pas null
-        assertNotNull("La première connexion devrait être différent de null", conn1);
-        assertNotNull("La deuxieme connexion devrait être différent de null", conn2);
+        assertNotNull("La première connexion ne doit pas etre null", conn1);
+        assertNotNull("La deuxieme connexion ne doit pas être  null", conn2);
 
         // instances différentes apres changmeent de base
         assertNotSame("Les connexions doivent être différentes", conn1, conn2);
