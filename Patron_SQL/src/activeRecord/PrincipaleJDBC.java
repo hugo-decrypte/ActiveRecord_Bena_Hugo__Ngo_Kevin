@@ -57,8 +57,7 @@ public class PrincipaleJDBC {
 
             SQLPrep = "INSERT INTO Personne (nom, prenom) VALUES (?,?);";
             //l'option RETURN_GENERATED_KEYS permet de récupérer l'id auto increment
-            prep = connect.prepareStatement(SQLPrep,
-                    Statement.RETURN_GENERATED_KEYS);
+            prep = connect.prepareStatement(SQLPrep, Statement.RETURN_GENERATED_KEYS);
             prep.setString(1, "Ridley");
             prep.setString(2, "Scott");
             prep.executeUpdate();
@@ -130,11 +129,11 @@ public class PrincipaleJDBC {
                 int id = rs.getInt("id");
                 System.out.println("-> (" + id + ") " + nom + ", " + prenom);
             }
-
+/*
             // suppression de la table personne
             String drop = "DROP TABLE Personne";
             stmt = connect.createStatement();
-            stmt.executeUpdate(drop);
+            stmt.executeUpdate(drop);*/
 
         } catch (SQLException e) {
             System.out.println("*** ERREUR SQL ***");
