@@ -11,9 +11,9 @@ public class DBConnection {
     private String userName;
     private String password;
     private String serverName;
-   private String portNumber;
+    private String portNumber;
     private String tableName;
-    private String dbName;
+    private static String dbName = "testpersonne";
 
 
     private DBConnection(){
@@ -22,7 +22,6 @@ public class DBConnection {
         this.serverName = "127.0.0.1";
         this.portNumber = "3306";
         this.tableName = "personne";
-        this.dbName = "testpersonne";
         try {
             Properties connectionProps = new Properties();
             connectionProps.put("user", userName);
@@ -30,7 +29,7 @@ public class DBConnection {
             String urlDB = "jdbc:mysql://" + serverName + ":";
             urlDB += portNumber + "/" + dbName;
             connect = DriverManager.getConnection(urlDB, connectionProps);
-            System.out.println(urlDB);
+            System.out.println("Connection à la base :" + urlDB);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -51,8 +50,10 @@ public class DBConnection {
      * (base de test ou base de l’application)
      */
 
-    public void setNomDB(String nomDB){
-        this.dbName = nomDB;
+    public static void setNomDB(String nomDB){
+        connect = null;
+        dbName = nomDB;
+        getConnection();
     }
 
 }
