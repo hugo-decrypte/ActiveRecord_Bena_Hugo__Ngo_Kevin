@@ -4,6 +4,7 @@ package activeRecord;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.Properties;
 
 public class DBConnection {
@@ -50,10 +51,11 @@ public class DBConnection {
      * (base de test ou base de l’application)
      */
 
-    public static void setNomDB(String nomDB){
-        connect = null;
-        dbName = nomDB;
-        getConnection();
+    public static synchronized void setNomDB(String nomDB){
+        if (nomDB != null & !Objects.equals(nomDB, dbName)) {
+            connect = null;
+            dbName = nomDB;
+        }
     }
 
 }
